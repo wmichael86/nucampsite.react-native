@@ -8,6 +8,10 @@ class Contact extends Component {
 
          }
     }
+
+    static navigationOptions = {
+        title: 'Contact Us'
+    }
     render() { 
         return ( 
             <ScrollView>
