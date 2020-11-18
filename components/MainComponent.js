@@ -45,6 +45,8 @@ const HomeNavigator = createStackNavigator(
     }
 )
 
+// Insert new About and Contact Stack Navigators here then add them to the drawer below...
+
 const MainNavigator = createDrawerNavigator(
     {
         Home: { screen: HomeNavigator },
