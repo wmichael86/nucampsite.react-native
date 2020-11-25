@@ -44,11 +44,12 @@ class About extends Component {
             );
         };
 
-        if(this.props.partners) {
+        if(this.props.partners.isLoading) {
             return (
                 <ScrollView>
                     <Mission />
-                    <Card title='Community Partners'>
+                    <Card 
+                        title='Community Partners'>
                         <Loading />
                     </Card>
                 </ScrollView>

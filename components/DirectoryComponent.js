@@ -34,7 +34,7 @@ class Directory extends Component {
         };
 
 
-        if (this.props.campsites) {
+        if (this.props.campsites.isLoading) {
             return <Loading />;
         }
         if (this.props.campsites.errMess) {
