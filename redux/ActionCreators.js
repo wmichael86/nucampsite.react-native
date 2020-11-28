@@ -5,7 +5,7 @@ import { baseUrl } from '../shared/baseUrl';
 export const fetchComments = () => dispatch => {
     return fetch(baseUrl + 'comments')
         .then(response => {
-            if(response.ok) {
+            if (response.ok) {
                 return response;
             } else {
                 const error = new Error(`Error ${response.status}: ${response.statusText}`);
@@ -13,10 +13,10 @@ export const fetchComments = () => dispatch => {
                 throw error;
             }
         },
-        error => {
-            const errMess = new Error(errror.message);
-            throw errMess;
-        })
+            error => {
+                const errMess = new Error(errror.message);
+                throw errMess;
+            })
 
         //Promise sent to fetch command
         .then(response => response.json())
@@ -42,14 +42,14 @@ export const fetchCampsites = () => dispatch => {
 
     return fetch(baseUrl + 'campsites')
         .then(response => {
-                if (response.ok) {
-                    return response;
-                } else {
-                    const error = new Error(`Error ${response.status}: ${response.statusText}`);
-                    error.response = response;
-                    throw error;
-                }
-            },
+            if (response.ok) {
+                return response;
+            } else {
+                const error = new Error(`Error ${response.status}: ${response.statusText}`);
+                error.response = response;
+                throw error;
+            }
+        },
             error => {
                 const errMess = new Error(error.message);
                 throw errMess;
@@ -74,19 +74,19 @@ export const addCampsites = campsites => ({
 });
 
 export const fetchPromotions = () => dispatch => {
-    
+
     dispatch(promotionsLoading());
 
     return fetch(baseUrl + 'promotions')
         .then(response => {
-                if (response.ok) {
-                    return response;
-                } else {
-                    const error = new Error(`Error ${response.status}: ${response.statusText}`);
-                    error.response = response;
-                    throw error;
-                }
-            },
+            if (response.ok) {
+                return response;
+            } else {
+                const error = new Error(`Error ${response.status}: ${response.statusText}`);
+                error.response = response;
+                throw error;
+            }
+        },
             error => {
                 const errMess = new Error(error.message);
                 throw errMess;
@@ -111,19 +111,19 @@ export const addPromotions = promotions => ({
 });
 
 export const fetchPartners = () => dispatch => {
-    
+
     dispatch(partnersLoading());
 
     return fetch(baseUrl + 'partners')
         .then(response => {
-                if (response.ok) {
-                    return response;
-                } else {
-                    const error = new Error(`Error ${response.status}: ${response.statusText}`);
-                    error.response = response;
-                    throw error;
-                }
-            },
+            if (response.ok) {
+                return response;
+            } else {
+                const error = new Error(`Error ${response.status}: ${response.statusText}`);
+                error.response = response;
+                throw error;
+            }
+        },
             error => {
                 const errMess = new Error(error.message);
                 throw errMess;
@@ -158,18 +158,18 @@ export const addFavorite = campsiteId => ({
     payload: campsiteId
 });
 
-export const addComment = newComment  => {
+export const addComment = comment => ({
     type: ActionTypes.ADD_COMMENT,
-    payload; newComment
-};
+    payload: comment
+});
 
-export const postComment = commentId => {
+export const postComment = (campsiteId, rating, author, text) => dispatch => {
     const newComment = {
         campsiteId,
         rating,
         author,
         text,
-        date: new Date().toISOString()
+        date: new Date().toISOString(),
     };
     setTimeout(() => {
         dispatch(addComment(newComment));

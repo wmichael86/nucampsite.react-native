@@ -15,12 +15,12 @@ const mapStateToProps = state => {
 }
 
 function RenderItem(props) {
-    const {item} = props;
+    const { item } = props;
 
     if (props.isLoading) {
         return <Loading />;
     }
-    if(props.errMess) {
+    if (props.errMess) {
         return (
             <View>
                 <Text>{props.errMess}</Text>
@@ -31,10 +31,10 @@ function RenderItem(props) {
         return (
             <Card
                 featuredTitle={item.name}
-                image={{uri: baseUrl + item.image}}
+                image={{ uri: baseUrl + item.image }}
             >
-                <Text 
-                    style={{margin: 10}}>
+                <Text
+                    style={{ margin: 10 }}>
                     {item.description}
                 </Text>
             </Card>
@@ -54,17 +54,17 @@ class Home extends Component {
     render() {
         return (
             <ScrollView>
-                <RenderItem 
+                <RenderItem
                     item={this.props.campsites.campsites.filter(campsite => campsite.featured)[0]}
                     isLoading={this.props.campsites.isLoading}
                     errMess={this.props.campsites.errMess}
                 />
-                <RenderItem 
+                <RenderItem
                     item={this.props.promotions.promotions.filter(promotion => promotion.featured)[0]}
                     isLoading={this.props.promotions.isLoading}
                     errMess={this.props.promotions.errMess}
                 />
-                <RenderItem 
+                <RenderItem
                     item={this.props.partners.partners.filter(partner => partner.featured)[0]}
                     isLoading={this.props.partners.isLoading}
                     errMess={this.props.partners.errMess}
@@ -74,4 +74,4 @@ class Home extends Component {
     }
 }
 
-export default  connect(mapStateToProps) (Home);
+export default connect(mapStateToProps)(Home);
