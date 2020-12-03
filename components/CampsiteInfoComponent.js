@@ -102,6 +102,11 @@ class CampsiteInfo extends Component {
         }
     }
 
+
+//         //ActionTypes.js
+// ActionCreator.js
+// comments.js
+// CampsiteInfoComponent.js
     toggleModal() {
         this.setState({ showModal: !this.state.showModal });
     }
