@@ -335,18 +335,22 @@ class Main extends Component {
         this.props.fetchComments();
         this.props.fetchPromotions();
         this.props.fetchPartners();
-
-        NetInfo.fetch().then(connectionInfo => {
-            (Platform.OS === 'ios')
-                ? Alert.alert('Initial Network Connectivity Type:', connectionInfo.type)
-                : ToastAndroid.show('Initial Network Connectivity Type: ' +
-                    connectionInfo.type, ToastAndroid.LONG);
-        });
+        this.showNetInfo()
 
         this.unsubscribeNetInfo = NetInfo.addEventListener(connectionInfo => {
             this.handleConnectivityChange(connectionInfo);
         });
     }
+
+    showNetInfo = async () => {
+
+        const connectionInfo = await NetInfo.fetch();
+
+        (Platform.OS === 'ios')
+            ? Alert.alert('Initial Network Connectivity Type:', connectionInfo.type)
+            : ToastAndroid.show('Initial Network Connectivity Type: ' +
+                connectionInfo.type, ToastAndroid.LONG);
+    };
 
     componentWillUnmount() {
         this.unsubscribeNetInfo();
@@ -374,17 +378,17 @@ class Main extends Component {
     }
 
 
-render() {
-    return (
-        <View
-            style={{
-                flex: 1,
-                paddingTop: Platform.OS === 'ios' ? 0 : Expo.Constants.statusBarHeight
-            }}>
-            <AppNavigator />
-        </View>
-    );
-}
+    render() {
+        return (
+            <View
+                style={{
+                    flex: 1,
+                    paddingTop: Platform.OS === 'ios' ? 0 : Expo.Constants.statusBarHeight
+                }}>
+                <AppNavigator />
+            </View>
+        );
+    }
 }
 
 const styles = StyleSheet.create({
